@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ContactItem = ({ contact }) => {
-  const { id, name, email, phone, type } = contact;
+  const {  id, name, email, phone, type } = contact;
   return (
     <div className='card bg-light'>
       <h3 className='text-primary text-left'>
@@ -19,16 +19,8 @@ const ContactItem = ({ contact }) => {
         </span>
       </h3>
       <ul className='list'>
-        {email && (
-          <li>
-            <i className='fas fa-envelope-open'></i>
-          </li>
-        )}
-        {phone && (
-          <li>
-            <i className='fas fa-phone'></i>
-          </li>
-        )}
+        {email && ( <li> <i className='fas fa-envelope-open'/> {email} </li>)}
+        {phone && ( <li> <i className='fas fa-phone'/> {phone} </li>)}
       </ul>
       <p>
         <button className='btn btn-dark btn-sm'>Edit</button>
