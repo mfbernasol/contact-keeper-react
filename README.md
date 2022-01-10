@@ -1,0 +1,1 @@
+Full stack ReactJS side project using Express as the backend for the API.
