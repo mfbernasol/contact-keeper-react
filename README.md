@@ -17,7 +17,7 @@ Clone down this repository. You will need `node` and `npm` installed globally on
 Installation:
 
 `npm install`\
- `cd client` 
+ `cd client`\
  `cd npm install` 
  
 To Start Server:
