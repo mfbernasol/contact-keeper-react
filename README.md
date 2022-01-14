@@ -20,9 +20,8 @@ Installation:
  `cd client`\
  `cd npm install` 
  
-To Start Server:
+To start Client and Server:
 
-`npm run dev`\
- `npm run server`\
- `npm run client`
+`npm run dev`
+
 
