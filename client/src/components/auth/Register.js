@@ -1,20 +1,21 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 import AlertContext from '../../context/alert/alertContext';
-import AuthContext from '../../context/auth/authContext';
+import { useAuth, clearErrors, register } from '../../context/auth/AuthState';
 
-const Register = () => {
+const Register = (props) => {
   const alertContext = useContext(AlertContext);
-  const authContext = useContext(AuthContext);
+  const [authState, authDispatch] = useAuth();
+  const { error, isAuthenticated } = authState;
 
   const { setAlert } = alertContext;
-  const { register, error, clearErrors } = authContext;
 
   useEffect(() => {
     if (error === 'User already exists') {
       setAlert(error, 'danger');
-      clearErrors();
+      clearErrors(authDispatch);
     }
-  }, [error]);
+  }, [error, isAuthenticated, props.history, setAlert, authDispatch]);
 
   const [user, setUser] = useState({
     name: '',
@@ -31,16 +32,18 @@ const Register = () => {
     e.preventDefault();
     if (name === '' || email === '' || password === '') {
       setAlert('Please enter all fields', 'danger');
-    } else if (password !== password) {
+    } else if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
     } else {
-      register({
+      register(authDispatch, {
         name,
         email,
         password,
       });
     }
   };
+
+  if (isAuthenticated) return <Navigate to='/' />;
 
   return (
     <div className='form-container'>
